@@ -29,6 +29,14 @@ public class BankAccount implements Cloneable{
         this.balance = balance;
     }
 
+    public Customar getCustomar() {
+        return customar;
+    }
+
+    public void setCustomar(Customar customar) {
+        this.customar = customar;
+    }
+
     public String getCurrency() {
         return currency;
     }
@@ -61,8 +69,10 @@ public class BankAccount implements Cloneable{
                 ", currency='" + currency + '\'' +
                 ", accountType=" + accountType +
                 ", accountStatus=" + accountStatus +
+                ", customar=" + customar +
                 '}';
     }
+
     //Pattern Builder
     public static class AccountBuilder{
         private BankAccount bankAccount=new BankAccount();
@@ -98,6 +108,8 @@ public class BankAccount implements Cloneable{
 
     @Override
     public BankAccount clone() throws CloneNotSupportedException {
-        return (BankAccount) super.clone();
+        BankAccount account=(BankAccount) super.clone();
+        account.setCustomar(this.customar.clone());
+        return account;
     }
 }
